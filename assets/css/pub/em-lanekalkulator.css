@@ -1,0 +1,104 @@
+.em-kalkulator {
+	display: inline-block;
+	padding: 2rem;
+	/*border: solid 1px black;*/
+	/*background-color: #fef;*/
+}
+
+.em-kalkulator-container {
+	margin-bottom: 2rem;
+	text-align: right;
+	user-select: none;
+}
+
+.em-kalkulator-title {
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+.em-kalkulator-resultat-container {
+	font-size: 2rem;
+	user-select: none;
+}
+
+.em-kalkulator-resultat {
+	width: 20rem;
+	margin-left: 2rem;
+	padding: 1rem;
+	background-color: #efe;
+	border: none;
+	font-size: 4rem;
+	text-align: right;
+	user-select: none;
+}
+
+.em-kalkulator label {
+	display: block;
+	font-weight: 700;
+}
+
+.em-kalkulator-input {
+	width: 10rem;
+	background-color: transparent;
+	border: none;
+	font-size: 2rem;
+	text-align: right;
+}
+
+.em-kalkulator-range {
+	width: 100%;
+}
+
+.em-kalkulator-input:focus {
+	outline: none;
+}
+
+.em-kalkulator-range {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    /*width: 100%;  Full-width */
+    height: 25px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+
+    border: solid 2px #333;
+    border-radius: 30px;
+    /*padding: 0;*/
+    /*flex: 1;*/
+    /*order: 3;*/
+}
+
+.em-kalkulator-range:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+.em-kalkulator-range::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    border: solid 2px #333;
+    border-radius: 50%;
+    background: #2a2; 
+    /*background: #4CAF50;  Green background */
+    cursor: pointer; /* Cursor on hover */
+    z-index: 10;
+}
+
+.em-kalkulator-range::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    z-index: 10;
+}
+
+/* shows the input number buttons */
+#em-kalkulator-rente::-webkit-inner-spin-button, 
+#em-kalkulator-rente::-webkit-outer-spin-button {  
+   opacity: 1;
+}
