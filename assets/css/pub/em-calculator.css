@@ -1,43 +1,56 @@
-.em-kalkulator {
+.em-calculator {
 	display: inline-block;
 	padding: 2rem;
-	/*border: solid 1px black;*/
+	border: dashed 2px #ccc;
 	/*background-color: #fef;*/
 }
 
-.em-kalkulator-container {
+.em-calculator-container {
 	margin-bottom: 2rem;
 	text-align: right;
 	user-select: none;
 }
 
-.em-kalkulator-title {
+.em-calculator-title {
 	font-size: 2rem;
 	font-weight: 700;
 }
 
-.em-kalkulator-resultat-container {
+.em-calculator-result-container {
 	font-size: 2rem;
-	user-select: none;
+    margin-bottom: 0;
 }
 
-.em-kalkulator-resultat {
-	width: 20rem;
-	margin-left: 2rem;
-	padding: 1rem;
-	background-color: #efe;
+
+.em-calculator-result-wrapper {
+    /*background-color: #efe;*/
+	/*padding: 0 1rem;*/
+    font-size: 4rem;
+    width: 20rem;
+}
+
+.em-calculator-result {
+    width: 12rem;
+    /*margin-left: 2rem;*/
+	background-color: transparent;
 	border: none;
 	font-size: 4rem;
 	text-align: right;
 	user-select: none;
+    color: black;
+    /*display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-between;*/
 }
 
-.em-kalkulator label {
+.em-calculator label {
 	display: block;
 	font-weight: 700;
 }
 
-.em-kalkulator-input {
+.em-calculator-input {
+    /*display: block;*/
 	width: 10rem;
 	background-color: transparent;
 	border: none;
@@ -45,15 +58,15 @@
 	text-align: right;
 }
 
-.em-kalkulator-range {
+.em-calculator-range {
 	width: 100%;
 }
 
-.em-kalkulator-input:focus {
+.em-calculator-input:focus {
 	outline: none;
 }
 
-.em-kalkulator-range {
+.em-calculator-range {
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
     /*width: 100%;  Full-width */
@@ -65,18 +78,18 @@
     transition: opacity .2s;
 
     border: solid 2px #333;
-    border-radius: 30px;
+    border-radius: 20px;
     /*padding: 0;*/
     /*flex: 1;*/
     /*order: 3;*/
 }
 
-.em-kalkulator-range:hover {
+.em-calculator-range:hover {
     opacity: 1; /* Fully shown on mouse-over */
 }
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
-.em-kalkulator-range::-webkit-slider-thumb {
+.em-calculator-range::-webkit-slider-thumb {
     -webkit-appearance: none; /* Override default look */
     appearance: none;
     width: 25px; /* Set a specific slider handle width */
@@ -89,7 +102,7 @@
     z-index: 10;
 }
 
-.em-kalkulator-range::-moz-range-thumb {
+.em-calculator-range::-moz-range-thumb {
     width: 25px; /* Set a specific slider handle width */
     height: 25px; /* Slider handle height */
     background: #4CAF50; /* Green background */
@@ -98,7 +111,11 @@
 }
 
 /* shows the input number buttons */
-#em-kalkulator-rente::-webkit-inner-spin-button, 
-#em-kalkulator-rente::-webkit-outer-spin-button {  
-   opacity: 1;
+#em-calculator-interest::-webkit-inner-spin-button,
+#em-calculator-interest::-webkit-outer-spin-button {  
+    text-align: right;
+    /*position: relative;*/
+    /*top: 0;*/
+    /*right: 50px;*/
+    opacity: 1;
 }
