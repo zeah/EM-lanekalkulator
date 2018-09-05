@@ -1,0 +1,8 @@
+customizer:
+
+felt:
+year
+years
+locale (drop down)
+
+colors

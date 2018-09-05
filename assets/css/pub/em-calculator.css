@@ -30,11 +30,11 @@
 }
 
 .em-calculator-result {
-    width: 12rem;
+    width: 20rem;
     /*margin-left: 2rem;*/
 	background-color: transparent;
 	border: none;
-	font-size: 4rem;
+	font-size: 3rem;
 	text-align: right;
 	user-select: none;
     color: black;
