@@ -1,0 +1,27 @@
+#customize-control-em_calc-result::before,
+#customize-control-em_calc-period::before,
+#customize-control-em_calc-interest::before,
+#customize-control-em_calc-amount::before {
+	display: block;
+
+	margin-top: 50px;
+	margin-bottom: 20px;
+
+	font-size: 24px;
+}
+
+#customize-control-em_calc-amount::before {
+	content: 'Amount Section';
+}
+
+#customize-control-em_calc-interest::before {
+	content: 'Interest Section';
+}
+
+#customize-control-em_calc-period::before {
+	content: 'Time Period Section';
+}
+
+#customize-control-em_calc-result::before {
+	content: 'Result Section';
+}

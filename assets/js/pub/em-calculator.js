@@ -3,14 +3,19 @@
 	
 
 	var belop_text = document.querySelector('#em-calculator-amount');
-	var ar_text = document.querySelector('#em-calculator-year');
+	var ar_text = document.querySelector('#em-calculator-period');
 	var rente_text = document.querySelector('#em-calculator-interest');
 
 	var belop = document.querySelector('.em-calculator-amount-range');
-	var ar = document.querySelector('.em-calculator-year-range');
+	var ar = document.querySelector('.em-calculator-period-range');
 	var rente = document.querySelector('.em-calculator-interest-range');
 	var resultat = document.querySelector('.em-calculator-result');
 
+	var postfix = document.querySelector('.em-calculator-postfix');
+	if (postfix) postfix = ' '+postfix.value;
+
+	var postfixes = document.querySelector('.em-calculator-postfixes');
+	if (postfixes) postfixes = ' '+postfixes.value;
 
 	var default_amount = document.querySelector('.em-calculator-default');
 	if (default_amount) default_amount = default_amount.value;
@@ -63,7 +68,12 @@
 	});
 
 	ar.addEventListener('input', function(e) {
-		ar_text.value = e.target.value;
+		var a = e.target.value;
+
+		if (a != 1) a += postfixes;
+		else a += postfix;
+
+		ar_text.value = a;
 		writeMP();
 	});
 

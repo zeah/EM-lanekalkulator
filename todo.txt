@@ -1,8 +1,24 @@
 customizer:
 
-felt:
-year
-years
-locale (drop down)
+dropdown for different styled range inputs
+legg til alle locales
 
-colors
+
+documentation:
+
+
+
+full sized kalkulator
+
+
+
+
+mini sized kalkulator
+
+
+
+mobil versjon
+
+
+IE 
+

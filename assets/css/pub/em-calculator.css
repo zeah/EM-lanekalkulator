@@ -30,6 +30,7 @@
 }
 
 .em-calculator-result {
+    display: block;
     width: 20rem;
     /*margin-left: 2rem;*/
 	background-color: transparent;
@@ -37,7 +38,7 @@
 	font-size: 3rem;
 	text-align: right;
 	user-select: none;
-    color: black;
+    /*color: black;*/
     /*display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -117,5 +118,7 @@
     /*position: relative;*/
     /*top: 0;*/
     /*right: 50px;*/
-    opacity: 1;
+    opacity: 0.4;
+    /*fill: red;*/
+    /*background: red;*/
 }
