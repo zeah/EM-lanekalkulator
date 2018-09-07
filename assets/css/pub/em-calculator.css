@@ -52,7 +52,7 @@
 
 .em-calculator-input {
     /*display: block;*/
-	width: 10rem;
+	width: 20rem;
 	background-color: transparent;
 	border: none;
 	font-size: 2rem;
@@ -121,4 +121,17 @@
     opacity: 0.4;
     /*fill: red;*/
     /*background: red;*/
+}
+
+.em-calc-leftarrow-svg,
+.em-calc-rightarrow-svg {
+    display: block;
+}
+
+.em-calc-button-right,
+.em-calc-button-left {
+    /*height: 1.5rem;*/
+    background-color: transparent;
+    padding: 0;
+    border: solid 1px #ccc;
 }

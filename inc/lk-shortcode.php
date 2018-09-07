@@ -150,6 +150,9 @@ final class LK_shortcode {
 		$border = $atts['border'] ? esc_attr($atts['border']) : false;
 
 
+		$right_arrow = '<svg class="em-calc-rightarrow-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><path class="em-calc-rightarrow-path"'.($font_color ? ' style="fill: '.$font_color.';"' : '').' d="M8.59,16.59L13.17,12L8.59,7.41L10,6l6,6l-6,6L8.59,16.59z"/><path fill="none" d="M0,0h24v24H0V0z"/></svg>';
+		$left_arrow = '<svg class="em-calc-leftarrow-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><path class="em-calc-leftarrow-path"'.($font_color ? ' style="fill: '.$font_color.';"' : '').' d="M15.41,16.59L10.83,12l4.58-4.59L14,6l-6,6l6,6L15.41,16.59z"/><path fill="none" d="M0,0h24v24H0V0z"/></svg>';
+
 		$float = false;
 		if ($atts['float'])
 			switch ($atts['float']) {
@@ -189,7 +192,8 @@ final class LK_shortcode {
 		$html = '<div class="em-calculator"'.($style ? $style_text : '').'>';
 
 		// info for js
-		$html .= sprintf('<input class="em-calculator-default" type="hidden" value="%s">', $default_amount);
+		$html .= sprintf('<input class="em-calculator-amount-default" type="hidden" value="%s">', $default_amount);
+		$html .= sprintf('<input class="em-calculator-interest-default" type="hidden" value="%s">', $default_interest);
 		// $html .= '<input class="em-calculator-default" type="hidden" value="'.$default_amount.'">';
 		$html .= sprintf('<input class="em-calculator-postfix" type="hidden" value="%s">', $postfix_period);
 		$html .= sprintf('<input class="em-calculator-postfixes" type="hidden" value="%s">', $postfixes_period);
@@ -233,16 +237,19 @@ final class LK_shortcode {
  		// interest
 		$html .= sprintf('<div class="em-calculator-interest-container em-calculator-container">
 							<label class="em-calculator-title-interest" for="em-calculator-interest">%s</label>
-							<div><input%s class="em-calculator-input" id="em-calculator-interest" type="number" step="0.01" value="%s">%%</div>
+							<div><input%s class="em-calculator-input" id="em-calculator-interest" value=""></div>
 							<input class="em-calculator-range em-calculator-interest-range" type="range" value="%s" max="%s" min="%s" step="%s">
+							<div><button type="button" class="em-calc-button-left">%s</button><button type="button" class="em-calc-button-right">%s</button></div>
 						</div>',
 						$text_interest,
 						$font_color ? ' style="color: '.$font_color.';"' : '',
-						$default_interest,
+						// $default_interest,
 						$default_interest,
 						$max_interest,
 						$min_interest,
-						$step_interest
+						$step_interest,
+						$left_arrow,
+						$right_arrow
 					);
 
 		// result

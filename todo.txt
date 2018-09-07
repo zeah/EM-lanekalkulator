@@ -1,24 +1,19 @@
-customizer:
+customizer
+	dropdown for different styled range inputs
+	legg til alle locales
 
-dropdown for different styled range inputs
-legg til alle locales
-
-
-documentation:
-
-
+documentation
+	theme hook eller egen side
 
 full sized kalkulator
 
-
-
-
 mini sized kalkulator
-
-
 
 mobil versjon
 
+Widget versjon
 
 IE 
+
+
 

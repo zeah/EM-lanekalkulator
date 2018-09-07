@@ -70,6 +70,7 @@ $(() => { ((api) => {
 
 	api('em_calc[color_font]', (v) => v.bind((nv) => {
 		$('.em-calculator, .em-calculator input').css('color', nv);
+		$('.em-calc-rightarrow-path, .em-calc-leftarrow-path').css('fill', nv);
 	}));
 	
 })(wp.customize); });
