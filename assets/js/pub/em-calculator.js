@@ -1,146 +1,157 @@
 (function() {
 
-	
+	// finding calcs
+	var calc = document.querySelectorAll('.em-calculator');
 
-	var belop_text = document.querySelector('#em-calculator-amount');
-	var ar_text = document.querySelector('#em-calculator-period');
-	var interest_text = document.querySelector('#em-calculator-interest');
+	for (var i = 0; i < calc.length; i++) {
+		// scoping
+		(function() { 
 
-	var belop = document.querySelector('.em-calculator-amount-range');
-	var ar = document.querySelector('.em-calculator-period-range');
-	var interest = document.querySelector('.em-calculator-interest-range');
-	var resultat = document.querySelector('.em-calculator-result');
+			var c = calc[i];
 
-	var postfix = document.querySelector('.em-calculator-postfix');
-	if (postfix) postfix = ' '+postfix.value;
+			// data & functions
+			var o = {
+				// text input elements
+				'amountText': c.querySelector('#em-calculator-amount'),
+				'periodText': c.querySelector('#em-calculator-period'),
+				'interestText': c.querySelector('#em-calculator-interest'),
+				'result': c.querySelector('.em-calculator-result'),
 
-	var postfixes = document.querySelector('.em-calculator-postfixes');
-	if (postfixes) postfixes = ' '+postfixes.value;
+				// range input elements
+				'amount': c.querySelector('.em-calculator-amount-range'),
+				'period': c.querySelector('.em-calculator-period-range'),
+				'interest': c.querySelector('.em-calculator-interest-range'),
 
-	var default_amount = document.querySelector('.em-calculator-amount-default');
-	if (default_amount) default_amount = default_amount.value;
+				// interest buttons
+				'buttonUp': c.querySelector('.em-calc-button-right'),
+				'buttonDown': c.querySelector('.em-calc-button-left'),
 
-	var default_interest = document.querySelector('.em-calculator-interest-default');
-	if (default_interest) default_interest = parseFloat(default_interest.value);
+				// styling for js locales
+				'percent': {
+					style: 'percent', 
+					minimumFractionDigits: 2, 
+					maximumFractionDigits: 2
+				},
+			
+				// period postfix
+				'postfix': c.querySelector('.em-calc-period-postfix') ? ' '+c.querySelector('.em-calc-period-postfix').value : ' year',
+				'postfixes': c.querySelector('.em-calc-period-postfixes') ? ' '+c.querySelector('.em-calc-period-postfixes').value : ' years',
+				
+				// for js locale
+				'amountDefault': c.querySelector('.em-calc-amount-default') ? parseFloat(c.querySelector('.em-calc-amount-default').value) : 250000,
+				
+				// data for counting and initial interest rate
+				'interestDefault': c.querySelector('.em-calc-interest-default') ? parseFloat(c.querySelector('.em-calc-interest-default').value) : 12,
+				
+				'locale': c.querySelector('.em-calc-locale') ? c.querySelector('.em-calc-locale').value : 'en-US|USD',
 
-	var http_lang = document.querySelector('.em-calculator-lang');
-	if (http_lang) http_lang = http_lang.value;
+				payment: function(p, n, i) { return Math.floor(p / ((1 - Math.pow(1 + i, -n)) / i)) },
+				calc: function() { o.result.value = o.payment(o.amount.value, o.period.value*12, o.interest.value/100/12).toLocaleString(o.language, o.currency) }, 
+			
+				setInterest: function() {
+					// setting text input
+					o.interestText.value = (o.interestDefault / 100).toLocaleString(o.language, o.percent);
 
-	var up_button = document.querySelector('.em-calc-button-right');
-	var down_button = document.querySelector('.em-calc-button-left');
+					// setting range input
+					o.interest.value = o.interestDefault;
 
-	var locale = 'en-US';
-	var currency_symbol = 'USD';
+					// recalculating result
+					o.calc();					
+				},
 
-	var temp_lang = http_lang.split('|');
+				countUp: function() {
+					o.interestDefault += 0.01;
+					o.setInterest();
+				},
 
-	if (Array.isArray(temp_lang)) {
-		locale = temp_lang[0];
-		currency_symbol = temp_lang[1];
-	}
+				countDown: function() {
+					o.interestDefault -= 0.01;
+					o.setInterest();
+				},
 
-	var currency = {
-		style: 'currency',
-		currency: currency_symbol,
-		minimumFractionDigits: 0, 
-		maximumFractionDigits: 0
-	};
+				button: function(e, callback) {
+					if (e) {
+						e.addEventListener('mousedown', function() {
 
-	belop_text.value = parseInt(default_amount).toLocaleString(locale, currency);
-	interest_text.value = parseFloat(default_interest/100).toLocaleString(locale, { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2});
+							var timer = setInterval(callback, 100);
 
-	if (!belop || !ar || !interest || !resultat) return;
+							var mousereleased = function() {
+								clearInterval(timer);
+								document.removeEventListener('mouseup', mousereleased);
+							}
 
-	var b = belop.value || 250.000;
-	var a = ar.value || 5;
-	var r = interest.value || 15;
+							document.addEventListener('mouseup', mousereleased);
+						});
 
-	function monthlyPayment(p, n, i) {
-	 	return Math.floor(p / ((1-Math.pow(1+i, -n))/i));
-	}
+						e.addEventListener('click', function() { callback(); });
+					}
+				},
 
-	function writeMP() {
-		b = belop.value;
-		a = ar.value;
-		// r = interest.value;
-		r = default_interest;
-
-		resultat.value = monthlyPayment(b, a*12, r/100/12).toLocaleString(locale, currency);
-	}
-
-	writeMP();
-
-	belop.addEventListener('input', function(e) {
-		belop_text.value = parseInt(e.target.value).toLocaleString(locale, currency);
-		writeMP();
-	});
-
-	ar.addEventListener('input', function(e) {
-		var a = e.target.value;
-
-		if (a != 1) a += postfixes;
-		else a += postfix;
-
-		ar_text.value = a;
-		writeMP();
-	});
-
-	interest.addEventListener('input', function(e) {
-		default_interest = parseFloat(e.target.value);
-		interest_text.value = default_interest.toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2})+'%';
-		writeMP();
-	});
-
-	interest_text.addEventListener('input', function(e) {
-		default_interest = parseFloat(e.target.value);
-		interest.value = e.target.value;
-		writeMP();
-	});
-
-	function countup() {
-		default_interest = default_interest + 0.01;
-		interest_text.value = parseFloat(default_interest/100).toLocaleString(locale, { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2});
-		interest.value = default_interest;
-	} 
-
-	function countdown() {
-		default_interest = default_interest - 0.01;
-		interest_text.value = parseFloat(default_interest/100).toLocaleString(locale, { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2});
-		interest.value = default_interest;
-	}
-
-	if (up_button) {
-		up_button.addEventListener('mousedown', function() {
-
-			var timer = setInterval(countup, 100);
-
-			var mousereleased = function() {
-				clearInterval(timer);
-				document.removeEventListener('mouseup', mousereleased);
 			}
 
-			document.addEventListener('mouseup', mousereleased);
-		});
+			// processing locales
+			o.language = o.locale.split('|')[0] || 'en-US';
+			// o.currencySymbol = o.locale.split('|')[1];
 
-		up_button.addEventListener('click', function() { countup(); });
-	}
-
-	if (down_button) {
-		down_button.addEventListener('mousedown', function() {
-
-			var timer = setInterval(countdown, 100);
-
-			var mousereleased = function() {
-				clearInterval(timer);
-				document.removeEventListener('mouseup', mousereleased);
-			}
-
-			document.addEventListener('mouseup', mousereleased);
-		});
-
-		down_button.addEventListener('click', function() { countdown(); });
-	}
+			// styling for js locales
+			o.currency = {
+				style: 'currency',
+				currency: o.locale.split('|')[1] || 'USD',
+				minimumFractionDigits: 0, 
+				maximumFractionDigits: 0
+			};
+			// end of data 
 
 
+			// actions
+			// init amount & interest values (using js locales)
+			o.amountText.value = parseInt(o.amountDefault).toLocaleString(o.language, o.currency);
+			o.interestText.value = parseFloat(o.interestDefault/100).toLocaleString(o.language, o.percent);
+
+			// initial update
+			o.calc();
+
+			// end of actions
+
+
+			// events
+			// amount range
+			o.amount.addEventListener('input', function(e) {
+				o.amountText.value = parseInt(e.target.value).toLocaleString(o.language, o.currency);
+				o.calc();
+			});
+
+			// period range
+			o.period.addEventListener('input', function(e) {
+				var a = e.target.value;
+
+				if (a != 1) a += o.postfixes;
+				else a += o.postfix;
+
+				o.periodText.value = a;
+				o.calc();
+			});
+
+			// interest range
+			o.interest.addEventListener('input', function(e) {
+				o.interestDefault = parseFloat(e.target.value);
+				o.interestText.value = (o.interestDefault/100).toLocaleString(o.language, o.percent);
+				o.calc();
+			});
+
+			// interest text
+			o.interestText.addEventListener('input', function(e) {
+				o.interestDefault = parseFloat(e.target.value);
+				o.interest.value = e.target.value;
+				o.calc();
+			});
+
+			// button events
+			o.button(o.buttonUp, o.countUp);
+			o.button(o.buttonDown, o.countDown);
+
+
+		})(); 	// end of scoping
+	} 			// end of loop
 
 })();

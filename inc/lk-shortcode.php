@@ -192,13 +192,13 @@ final class LK_shortcode {
 		$html = '<div class="em-calculator"'.($style ? $style_text : '').'>';
 
 		// info for js
-		$html .= sprintf('<input class="em-calculator-amount-default" type="hidden" value="%s">', $default_amount);
-		$html .= sprintf('<input class="em-calculator-interest-default" type="hidden" value="%s">', $default_interest);
-		// $html .= '<input class="em-calculator-default" type="hidden" value="'.$default_amount.'">';
-		$html .= sprintf('<input class="em-calculator-postfix" type="hidden" value="%s">', $postfix_period);
-		$html .= sprintf('<input class="em-calculator-postfixes" type="hidden" value="%s">', $postfixes_period);
+		$html .= sprintf('<input class="em-calc-amount-default" type="hidden" value="%s">', $default_amount);
+		$html .= sprintf('<input class="em-calc-interest-default" type="hidden" value="%s">', $default_interest);
+		// $html .= '<input class="em-calc-default" type="hidden" value="'.$default_amount.'">';
+		$html .= sprintf('<input class="em-calc-period-postfix" type="hidden" value="%s">', $postfix_period);
+		$html .= sprintf('<input class="em-calc-period-postfixes" type="hidden" value="%s">', $postfixes_period);
 
-		$html .= sprintf('<input class="em-calculator-lang" type="hidden" value="%s">', $locale);
+		$html .= sprintf('<input class="em-calc-locale" type="hidden" value="%s">', $locale);
 
 		// title 
 		$html .= sprintf('<div class="em-calculator-title em-calculator-container">%s</div>', $title);
