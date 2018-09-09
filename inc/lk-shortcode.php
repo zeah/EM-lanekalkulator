@@ -255,7 +255,6 @@ final class LK_shortcode {
 		// result
 		$html .= sprintf('<div class="em-calculator-result-container em-calculator-container">
 					 	<div class="em-calculator-title-result">%s</div>
-					 	<div class="em-calculator-result-wrapper">
 					 		<input%s class="em-calculator-result" disabled>
 					 	</div>',
 					 	$text_result,
