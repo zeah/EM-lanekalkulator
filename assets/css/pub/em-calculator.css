@@ -1,90 +1,98 @@
+/**
+ *      1.0 calculator
+ *          1.1 .em-calculator--------------container for calculator
+ *          1.2 .em-calculator-title--------title element
+ *          
+ *          1.3 .em-calculator-container----input containers
+ *              1.3.1 .em-calculator label--------label for text inputs
+ *              1.3.2 .em-calculator-input--------text input
+ *              1.3.3 .em-calculator-range--------range input
+ *              
+ *              1.3.4 .em-calc-button-left--------button for lowering interest value
+ *              1.3.5 .em-calc-button-right-------button for increasing interest value
+ *                  1.3.5.1 .em-calc-leftarrow-svg, .em-calc-rightarrow-svg------arrows for buttons
+ *                  
+ *          1.4 .em-calculator-result-container-----container for the result
+ *              1.4.1 .em-calculator-result-title---result title element
+ *              1.4.2 .em-calculator-result---------text input with result
+ *
+ *      2.0 media max-width: 815px
+ *          2.1 .em-calculator
+ *
+ *      3.0 Internet Explorer 
+ *          3.1 .em-calculator-range
+ */
+
+
+/* 1.1 calculator container */
 .em-calculator {
 	display: inline-block;
-	padding: 2rem;
-	border: dashed 2px #ccc;
-	/*background-color: #fef;*/
-
+	
+    width: 25rem;
+    padding: 2rem;
+    
     margin-bottom: 2rem;
+
+    border: dashed 2px #ccc;
+
+    box-sizing: border-box;
 }
 
-.em-calculator-container {
-	margin-bottom: 2rem;
-	text-align: right;
-	user-select: none;
-}
 
+/* 1.2 title element */
 .em-calculator-title {
 	font-size: 2rem;
 	font-weight: 700;
 }
 
-.em-calculator-result-container {
-	font-size: 2rem;
-    margin-bottom: 0;
+
+/* 1.3 input container */
+.em-calculator-container {
+    margin-bottom: 2rem;
+    text-align: right;
+    user-select: none;
 }
 
-
-.em-calculator-result-wrapper {
-    /*background-color: #efe;*/
-	/*padding: 0 1rem;*/
-    font-size: 4rem;
-    width: 20rem;
-}
-
-.em-calculator-result {
-    display: block;
-    width: 20rem;
-    /*margin-left: 2rem;*/
-	background-color: transparent;
-	border: none;
-	font-size: 3rem;
-	text-align: right;
-	user-select: none;
-    /*color: black;*/
-    /*display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: space-between;*/
-}
-
+/* 1.3.1 label for text inputs */
 .em-calculator label {
 	display: block;
 	font-weight: 700;
 }
 
+/* 1.3.2 text input */
 .em-calculator-input {
-    /*display: block;*/
-	width: 20rem;
+	width: 100%;
 	background-color: transparent;
 	border: none;
 	font-size: 2rem;
 	text-align: right;
 }
+.em-calculator-input:focus {
+    outline: none;
+}
 
+/* 1.3.3 range input */
 .em-calculator-range {
 	width: 100%;
-}
 
-.em-calculator-input:focus {
-	outline: none;
-}
-
-.em-calculator-range {
-    -webkit-appearance: none;  /* Override default CSS styles */
+    /* Override default CSS styles */
+    -webkit-appearance: none;  
     appearance: none;
-    /*width: 100%;  Full-width */
-    height: 25px; /* Specified height */
-    background: #d3d3d3; /* Grey background */
-    outline: none; /* Remove outline */
-    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+
+    /* Specified height */
+    height: 25px; 
+    background: #d3d3d3; 
+    outline: none;
+
+    /* Set transparency (for mouse-over effects on hover) */ 
+    opacity: 0.7; 
+
+    /* 0.2 seconds transition on hover */
+    -webkit-transition: .2s; 
     transition: opacity .2s;
 
     border: solid 2px #333;
     border-radius: 20px;
-    /*padding: 0;*/
-    /*flex: 1;*/
-    /*order: 3;*/
 }
 
 .em-calculator-range:hover {
@@ -93,15 +101,22 @@
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
 .em-calculator-range::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
+    /* Override default look */
+    -webkit-appearance: none; 
     appearance: none;
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
+
+    /* Set a specific slider handle width */
+    width: 25px;
+
+    /* Slider handle height */
+    height: 25px; 
+
     border: solid 2px #333;
     border-radius: 50%;
-    background: #2a2; 
-    /*background: #4CAF50;  Green background */
-    cursor: pointer; /* Cursor on hover */
+    background: #2a2;
+
+    /* Cursor on hover */ 
+    cursor: pointer; 
     z-index: 10;
 }
 
@@ -113,27 +128,116 @@
     z-index: 10;
 }
 
-/* shows the input number buttons */
-#em-calculator-interest::-webkit-inner-spin-button,
-#em-calculator-interest::-webkit-outer-spin-button {  
-    text-align: right;
-    /*position: relative;*/
-    /*top: 0;*/
-    /*right: 50px;*/
-    opacity: 0.4;
-    /*fill: red;*/
-    /*background: red;*/
+
+/* 1.3.5 buttons for interest value */
+.em-calc-button-right,
+.em-calc-button-left {
+    padding: 0;
+    border: solid 1px #ccc;
+    background-color: transparent;
+    cursor: pointer;
 }
 
+/* 1.3.5.1 svg element for buttons */
 .em-calc-leftarrow-svg,
 .em-calc-rightarrow-svg {
     display: block;
 }
 
-.em-calc-button-right,
-.em-calc-button-left {
-    /*height: 1.5rem;*/
+
+/* 1.4 container for result */
+.em-calculator-result-container {
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+
+/* 1.4.1 result title */
+
+/* 1.4.2 result input */
+.em-calculator-result {
+    width: 100%;
+    border: none;
     background-color: transparent;
-    padding: 0;
-    border: solid 1px #ccc;
+    font-size: 3rem;
+    text-align: right;
+}
+
+
+
+/* 2.0 mobile css */
+@media only screen and (max-width: 815px) {
+    /* 2.1 calculator container */
+    .em-calculator {
+        display: block;
+        float: none !important;
+        width: 100%;
+    }
+}
+
+
+
+/* 3.0 internet explorer css*/
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    /* 3.1 range input styling */
+    .em-calculator-range {
+           /* Override default CSS styles */
+        -webkit-appearance: none;  
+        appearance: none;
+        height: auto;
+
+        /* Specified height */
+        background: transparent; 
+        outline: none;
+
+        /* Set transparency (for mouse-over effects on hover) */ 
+        opacity: 0.7; 
+
+        /* 0.2 seconds transition on hover */
+        -webkit-transition: .2s; 
+        transition: opacity .2s;
+
+        border: none;
+        border-radius: 0;
+    }
+
+    .em-calculator-range::-ms-track {
+        width: 300px;
+        height: 5px;
+        
+        /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+        background: transparent;
+        
+        /*leave room for the larger thumb to overflow with a transparent border */
+        border-color: transparent;
+        border-width: 6px 0;
+
+        /*remove default tick marks*/
+        color: transparent;
+    }
+
+    .em-calculator-range::-ms-fill-lower {
+        background: #777;
+        border-radius: 10px;
+    }
+
+    .em-calculator-range::-ms-fill-upper {
+        background: #ddd;
+        border-radius: 10px;
+    }
+
+    .em-calculator-range::-ms-thumb {
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: #2a2;
+    }
+
+    .em-calculator-range:focus::-ms-fill-lower {
+        background: #888;
+    }
+
+    .em-calculator-range:focus::-ms-fill-upper {
+        background: #ccc;
+    }
 }

@@ -116,13 +116,18 @@
 
 			// events
 			// amount range
-			o.amount.addEventListener('input', function(e) {
+			var amountEvent = function(e) {
 				o.amountText.value = parseInt(e.target.value).toLocaleString(o.language, o.currency);
 				o.calc();
-			});
+			}
+
+			o.amount.addEventListener('input', function(e) { amountEvent(e) });
+
+			// for IE
+			o.amount.addEventListener('change', function(e) { amountEvent(e) });
 
 			// period range
-			o.period.addEventListener('input', function(e) {
+			var periodEvent = function(e) {
 				var a = e.target.value;
 
 				if (a != 1) a += o.postfixes;
@@ -130,14 +135,25 @@
 
 				o.periodText.value = a;
 				o.calc();
-			});
+			}
+
+			o.period.addEventListener('input', function(e) { periodEvent(e) });
+			
+			// for IE
+			o.period.addEventListener('change', function(e) { periodEvent(e) });
 
 			// interest range
-			o.interest.addEventListener('input', function(e) {
+
+			var interestEvent = function(e) {
 				o.interestDefault = parseFloat(e.target.value);
 				o.interestText.value = (o.interestDefault/100).toLocaleString(o.language, o.percent);
 				o.calc();
-			});
+			}
+
+			o.interest.addEventListener('input', function(e) { interestEvent(e) });
+
+			// for IE
+			o.interest.addEventListener('change', function(e) { interestEvent(e) });
 
 			// interest text
 			o.interestText.addEventListener('input', function(e) {
