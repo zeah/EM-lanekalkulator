@@ -170,7 +170,8 @@
     .em-calculator {
         display: block;
         float: none !important;
-        width: 100%;
+        width: auto !important;
+        margin: 1rem;
     }
 }
 
