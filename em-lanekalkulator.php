@@ -2,7 +2,7 @@
 /*
 Plugin Name: EM lånekalkulator
 Description: Lånekalkulator
-Version: 0.0.1
+Version: 1.0.0
 GitHub Plugin URI: zeah/EM-lanekalkulator
 */
 

@@ -63,7 +63,7 @@ $(() => { ((api) => {
 	api('em_calc[interest_step]', (v) => v.bind((nv) => $('.em-calculator-interest-range').attr('step', nv)))
 
 	// result
-	api('em_calc[result]', (v) => v.bind((nv) => $('.em-calculator-title-result').text(nv)));
+	api('em_calc[result]', (v) => v.bind((nv) => $('.em-calculator-result-title').text(nv)));
 
 	// colors
 	api('em_calc[color_background]', (v) => v.bind((nv) => $('.em-calculator').css('background-color', nv)));

@@ -131,11 +131,11 @@ final class LK_shortcode {
 
 		// result
 		// $text_result = $atts['result-text'] ? sanitize_text_field($atts['result-text']) : 'Kostnad per måned';
-		$text_result = $atts['result-text'] ? floatval($atts['result-text']) 
-						: ($options['result_text'] ? floatval($options['result_text']) 
+		$text_result = $atts['result-text'] ? sanitize_text_field($atts['result-text']) 
+						: ($options['result'] ? sanitize_text_field($options['result']) 
 						   : 'Monthly Costs');
 
-
+		// wp_die('<xmp>'.print_r($options, true).'</xmp>');
 		// colors
 		$background_color = $atts['background-color'] ? esc_attr($atts['background-color']) 
 							: ($options['color_background'] ? sanitize_hex_color($options['color_background']) 
