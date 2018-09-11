@@ -245,7 +245,7 @@ final class LK_shortcode {
 							<label class="em-calculator-title-interest" for="em-calculator-interest">%s</label>
 							<input%s class="em-calculator-input" id="em-calculator-interest" value="">
 							<input class="em-calculator-range em-calculator-interest-range" type="range" value="%s" max="%s" min="%s" step="%s">
-							<div><button type="button" class="em-calc-button-left">%s</button><button type="button" class="em-calc-button-right">%s</button></div>
+							<div class="em-calc-buttons"><button type="button" class="em-calc-button-left">%s</button><button type="button" class="em-calc-button-right">%s</button></div>
 						</div>',
 						$text_interest,
 						$font_color ? ' style="color: '.$font_color.';"' : '',
@@ -260,7 +260,7 @@ final class LK_shortcode {
 
 		// result
 		$html .= sprintf('<div class="em-calculator-result-container em-calculator-container">
-					 	<div class="em-calculator-result-title">%s</div>
+					 		<div class="em-calculator-result-title">%s</div>
 					 		<input%s class="em-calculator-result" disabled>
 					 	</div>',
 					 	$text_result,
