@@ -5,6 +5,9 @@ final class LK_shortcode {
 	/* singleton */
 	private static $instance = null;
 
+	// private $a = null;
+	// private $o = null;
+
 	public static function get_instance() {
 		if (self::$instance === null) self::$instance = new self();
 
@@ -24,17 +27,20 @@ final class LK_shortcode {
 
 		if (!is_array($atts)) $atts = [];
 
+		// $this->$a = $atts;
 
 		$options = get_option('em_calc');
 		if (!is_array($options)) $options = [];
 
+		// $this->o = $options;
 		// wp_die('<xmp>'.print_r($options, true).'</xmp>');
 
 
 		$this->add_css();
 		wp_enqueue_script( 'em-lanekalkulator-script', LANEKALKULATOR_PLUGIN_URL.'assets/js/pub/em-calculator.js', array(), false, true);
 
-
+		// wp_die('<xmp>'.print_r($this->text('amount', 'text', 'hey'), true).'</xmp>');
+		
 		// locale
 		$locale = $atts['locale'] ? sanitize_text_field($atts['locale'])
 				  : ($options['locale'] ? sanitize_text_field($options['locale'])
@@ -67,7 +73,7 @@ final class LK_shortcode {
 					   	  : 'Amount');
 
 
-
+        // $text_amount = $this->get_text('amount', 'text', 'Amount');
 		// time period
 		// $max_period = $atts['period-max'] ? intval($atts['period-max']) : '15';
 		$max_period = $atts['period-max'] ? intval($atts['period-max']) //  value from shortcode
@@ -211,8 +217,10 @@ final class LK_shortcode {
 
 		// amount
 		$html .= sprintf('<div class="em-calculator-amount-container em-calculator-container">
-							<label class="em-calculator-title-amount">%s</label>
-							<input%s class="em-calculator-input" id="em-calculator-amount" disabled>
+							<div class="em-calc-textinfo-container">
+								<label class="em-calculator-title-amount" for="em-calculator-amount">%s</label>
+								<input%s class="em-calculator-input" id="em-calculator-amount" disabled>
+							</div>
 							<input class="em-calculator-range em-calculator-amount-range" type="range" value="%d" max="%d" min="%d" step="%d">
 						  </div>',
 						  $text_amount,
@@ -226,8 +234,10 @@ final class LK_shortcode {
 
 		// period
 		$html .= sprintf('<div class="em-calculator-period-container em-calculator-container">
-							<label class="em-calculator-title-period" for="em-calculator-period">%s</label>
-							<input%s class="em-calculator-input" id="em-calculator-period" value="%s%s" disabled>
+							<div class="em-calc-textinfo-container">
+								<label class="em-calculator-title-period" for="em-calculator-period">%s</label>
+								<input%s class="em-calculator-input" id="em-calculator-period" value="%s%s" disabled>
+							</div>
 							<input class="em-calculator-range em-calculator-period-range" type="range" value="%s" max="%s" min="%s" step="%s">
 						  </div>',
 						  $text_period,
@@ -242,8 +252,10 @@ final class LK_shortcode {
 
  		// interest
 		$html .= sprintf('<div class="em-calculator-interest-container em-calculator-container">
-							<label class="em-calculator-title-interest" for="em-calculator-interest">%s</label>
-							<input%s class="em-calculator-input" id="em-calculator-interest" value="">
+							<div class="em-calc-textinfo-container">
+								<label class="em-calculator-title-interest" for="em-calculator-interest">%s</label>
+								<input%s class="em-calculator-input" id="em-calculator-interest" value="">
+							</div>
 							<input class="em-calculator-range em-calculator-interest-range" type="range" value="%s" max="%s" min="%s" step="%s">
 							<div class="em-calc-buttons"><button type="button" class="em-calc-button-left">%s</button><button type="button" class="em-calc-button-right">%s</button></div>
 						</div>',
@@ -262,7 +274,7 @@ final class LK_shortcode {
 		$html .= sprintf('<div class="em-calculator-result-container em-calculator-container">
 					 		<div class="em-calculator-result-title">%s</div>
 					 		<input%s class="em-calculator-result" disabled>
-					 	</div>',
+					 	  </div>',
 					 	$text_result,
 						$font_color ? ' style="color: '.$font_color.';"' : ''
 					 );
@@ -273,6 +285,19 @@ final class LK_shortcode {
 
 	}
 
+	// private function text($n, $t, $d) {
+	// 	$o = $this->$o;
+	// 	$a = $this->$a;
+
+	// 	$v = $n.'-'.$t;
+	// 	$w = $n.'_'.$t;
+	// 	// wp_die('<xmp>'.print_r($this->$o, true).'</xmp>');
+		
+	// 	if ($o[$w]) $d = $o[$w];
+	// 	if ($a[$v]) $d = $a[$v];
+	// 	$d = 'blah';
+	// 	return sanitize_text_field($d);
+	// }
 
 	private function add_css() {
         wp_enqueue_style('em-calculator-style', LANEKALKULATOR_PLUGIN_URL.'assets/css/pub/em-calculator.css', array(), '1.0.0');
