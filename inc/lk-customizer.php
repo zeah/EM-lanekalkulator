@@ -90,18 +90,21 @@ final class LK_customizer {
 			'vi-VI|VND' => __('Vietnam'),
 		];
 
+
+		/* adding section */
 		$cust->add_section('em_calc_section', [
 			'title' => 'Calculator Plugin',
 			'priority' => 500
 		]);
 
+
+		/* language */
 		$cust->add_setting('em_calc[locale]', [
 			'type' => 'option',
 			'capability' => 'manage_options',
 			'default' => 'en-US|USD',
 			'sanitize_callback' => 'sanitize_text_field'
 		]);
-
 		$cust->add_control('em_calc[locale]', [
 			'type' => 'select',
 			'label' => _x('Locale', 'Language locality'),
@@ -126,6 +129,7 @@ final class LK_customizer {
 			'transport' => 'postMessage'
 		];
 
+
 		// title
 		$cust->add_setting('em_calc[title]', $args);
 		$cust->get_setting('em_calc[title]')->default = _x('Loan Cost Calculator', 'default title for loan calculator');
@@ -136,7 +140,7 @@ final class LK_customizer {
 		]);
 
 
-		// amount
+		// amount title
 		$cust->add_setting('em_calc[amount]', $args);
 		$cust->get_setting('em_calc[amount]')->default = _x('Amount', 'title of amount of money field');
 		$cust->add_control('em_calc[amount]', [
@@ -145,6 +149,7 @@ final class LK_customizer {
 			'section' => 'em_calc_section'
 		]);
 
+		// amount initial value
 		$cust->add_setting('em_calc[amount_default]', $args_nr);
 		$cust->get_setting('em_calc[amount_default]')->default = 250000;		
 		$cust->add_control('em_calc[amount_default]', [
@@ -154,6 +159,7 @@ final class LK_customizer {
 
 		]);
 
+		// amount max value
 		$cust->add_setting('em_calc[amount_max]', $args_nr);
 		$cust->get_setting('em_calc[amount_max]')->default = 500000;		
 		$cust->add_control('em_calc[amount_max]', [
@@ -163,6 +169,7 @@ final class LK_customizer {
 
 		]);
 
+		// amount min value
 		$cust->add_setting('em_calc[amount_min]', $args_nr);
 		$cust->get_setting('em_calc[amount_min]')->default = 10000;		
 		$cust->add_control('em_calc[amount_min]', [
@@ -172,6 +179,7 @@ final class LK_customizer {
 
 		]);
 
+		// amount input step
 		$cust->add_setting('em_calc[amount_step]', $args_nr);
 		$cust->get_setting('em_calc[amount_step]')->default = 1000;		
 		$cust->add_control('em_calc[amount_step]', [
@@ -183,7 +191,8 @@ final class LK_customizer {
 		]);
 
 
-		// time period
+
+		// period title
 		$cust->add_setting('em_calc[period]', $args);
 		$cust->get_setting('em_calc[period]')->default = _x('Time Period', 'default title for time period field');
 		$cust->add_control('em_calc[period]', [
@@ -192,6 +201,7 @@ final class LK_customizer {
 			'section' => 'em_calc_section'
 		]);
 
+		// period plural period postfix
 		$cust->add_setting('em_calc[period_postfix]', $args);
 		$cust->get_setting('em_calc[period_postfix]')->default = _x('year', 'default postfix for time period field');
 		$cust->add_control('em_calc[period_postfix]', [
@@ -201,6 +211,7 @@ final class LK_customizer {
 			'section' => 'em_calc_section'
 		]);
 
+		// period singular period postfix
 		$cust->add_setting('em_calc[period_postfixes]', $args);
 		$cust->get_setting('em_calc[period_postfixes]')->default = _x('years', 'default postfix for time period field when plural postfixes');
 		$cust->add_control('em_calc[period_postfixes]', [
@@ -209,6 +220,8 @@ final class LK_customizer {
 			'section' => 'em_calc_section'
 		]);
 
+
+		// period initial value
 		$cust->add_setting('em_calc[period_default]', $args_nr);
 		$cust->get_setting('em_calc[period_default]')->default = 5;		
 		$cust->add_control('em_calc[period_default]', [
@@ -218,6 +231,7 @@ final class LK_customizer {
 
 		]);
 
+		// period max value
 		$cust->add_setting('em_calc[period_max]', $args_nr);
 		$cust->get_setting('em_calc[period_max]')->default = 15;		
 		$cust->add_control('em_calc[period_max]', [
@@ -227,6 +241,7 @@ final class LK_customizer {
 
 		]);
 
+		// period min value
 		$cust->add_setting('em_calc[period_min]', $args_nr);
 		$cust->get_setting('em_calc[period_min]')->default = 1;		
 		$cust->add_control('em_calc[period_min]', [
@@ -236,6 +251,7 @@ final class LK_customizer {
 
 		]);
 
+		// period input step
 		$cust->add_setting('em_calc[period_step]', $args_nr);
 		$cust->get_setting('em_calc[period_step]')->default = 1;		
 		$cust->add_control('em_calc[period_step]', [
@@ -247,7 +263,7 @@ final class LK_customizer {
 
 
 
-		// Interest
+		// Interest title
 		$cust->add_setting('em_calc[interest]', $args);
 		$cust->get_setting('em_calc[interest]')->default = _x('Interest', 'default title for (effective) interest field');
 		$cust->add_control('em_calc[interest]', [
@@ -257,6 +273,7 @@ final class LK_customizer {
 			'section' => 'em_calc_section'
 		]);
 
+		// interest initial value
 		$cust->add_setting('em_calc[interest_default]', $args_nr);
 		$cust->get_setting('em_calc[interest_default]')->default = 15;		
 		$cust->add_control('em_calc[interest_default]', [
@@ -266,6 +283,7 @@ final class LK_customizer {
 
 		]);
 
+		// interest max value
 		$cust->add_setting('em_calc[interest_max]', $args_nr);
 		$cust->get_setting('em_calc[interest_max]')->default = 45;		
 		$cust->add_control('em_calc[interest_max]', [
@@ -275,6 +293,7 @@ final class LK_customizer {
 
 		]);
 
+		// interest min value
 		$cust->add_setting('em_calc[interest_min]', $args_nr);
 		$cust->get_setting('em_calc[interest_min]')->default = 2;		
 		$cust->add_control('em_calc[interest_min]', [
@@ -284,6 +303,7 @@ final class LK_customizer {
 
 		]);
 
+		// interest input step
 		$cust->add_setting('em_calc[interest_step]', $args_nr);
 		$cust->get_setting('em_calc[interest_step]')->default = 0.5;		
 		$cust->add_control('em_calc[interest_step]', [
@@ -305,7 +325,9 @@ final class LK_customizer {
 
 
 
-		// COLOR 
+		// COLORS
+
+		// background-color 
 		$cust->add_setting('em_calc[color_background]', [
 			'type' => 'option',
 			'transport' => 'postMessage',
@@ -321,7 +343,7 @@ final class LK_customizer {
 			])
 		);
 
-
+		// font color
 		$cust->add_setting('em_calc[color_font]', [
 			'type' => 'option',
 			'transport' => 'postMessage',
