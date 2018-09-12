@@ -15,8 +15,8 @@ Widget versjon
 
 IE 
 
-flere enn en kalkulator på samme side?! med tanke på js
-.em-calculator -> queryselector
+
+uninstall file
 
 
 
