@@ -9,6 +9,9 @@
 
 			var c = calc[i];
 
+			// info from backend through html
+			var info = c.querySelector('.em-calc-info') ? c.querySelector('.em-calc-info').value.split('|') : ['year', 'years', 500000, 11.0, 'en-US', 'USD'];
+
 			// data & functions
 			var o = {
 				// text input elements
@@ -33,18 +36,15 @@
 					maximumFractionDigits: 2
 				},
 			
-				// period postfix
-				'postfix': c.querySelector('.em-calc-period-postfix') ? ' '+c.querySelector('.em-calc-period-postfix').value : ' year',
-				'postfixes': c.querySelector('.em-calc-period-postfixes') ? ' '+c.querySelector('.em-calc-period-postfixes').value : ' years',
-				
-				// for js locale
-				'amountDefault': c.querySelector('.em-calc-amount-default') ? parseFloat(c.querySelector('.em-calc-amount-default').value) : 250000,
-				
-				// data for counting and initial interest rate
-				'interestDefault': c.querySelector('.em-calc-interest-default') ? parseFloat(c.querySelector('.em-calc-interest-default').value) : 12,
-				
-				'locale': c.querySelector('.em-calc-locale') ? c.querySelector('.em-calc-locale').value : 'en-US|USD',
+				// info from backend
+				'postfix': ' '+info[0],
+				'postfixes': ' '+info[1],
+				'amountDefault': info[2],
+				'interestDefault': parseFloat(info[3]),
+				'language': info[4],
+				'currencySymbol': info[5],
 
+				// calculating monthly costs from yearly effective interest
 				payment: function(p, n, i) { return Math.floor(p / ((1 - Math.pow(1 + i, -n)) / i)) },
 				calc: function() { o.result.value = o.payment(o.amount.value, o.period.value*12, o.interest.value/100/12).toLocaleString(o.language, o.currency) }, 
 			
@@ -59,16 +59,17 @@
 					o.calc();					
 				},
 
+				// interest button functions
 				countUp: function() {
 					o.interestDefault += 0.01;
 					o.setInterest();
 				},
-
 				countDown: function() {
 					o.interestDefault -= 0.01;
 					o.setInterest();
 				},
 
+				// interest button event
 				button: function(e, callback) {
 					if (e) {
 						e.addEventListener('mousedown', function() {
@@ -89,14 +90,11 @@
 
 			}
 
-			// processing locales
-			o.language = o.locale.split('|')[0] || 'en-US';
-			// o.currencySymbol = o.locale.split('|')[1];
 
 			// styling for js locales
 			o.currency = {
 				style: 'currency',
-				currency: o.locale.split('|')[1] || 'USD',
+				currency: o.currencySymbol,
 				minimumFractionDigits: 0, 
 				maximumFractionDigits: 0
 			};
