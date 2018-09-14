@@ -45,8 +45,8 @@
 				'currencySymbol': info[5],
 
 				// calculating monthly costs from yearly effective interest
-				payment: function(p, n, i) { return Math.floor(p / ((1 - Math.pow(1 + i, -n)) / i)) },
-				calc: function() { o.result.value = o.payment(o.amount.value, o.period.value*12, o.interest.value/100/12).toLocaleString(o.language, o.currency) }, 
+				payment: function(p, n, i) { i = parseFloat(i.toFixed(5)); return Math.floor(p / ((1 - Math.pow(1 + i, -n)) / i)) },
+				calc: function() { o.result.value = o.payment(o.amount.value, o.period.value*12, o.interestDefault/100/12).toLocaleString(o.language, o.currency) }, 
 			
 				setInterest: function() {
 					// setting text input
@@ -155,8 +155,9 @@
 
 			// interest text
 			o.interestText.addEventListener('input', function(e) {
-				o.interestDefault = parseFloat(e.target.value);
-				o.interest.value = e.target.value;
+				var i = parseFloat(e.target.value.replace(',', '.'));
+				o.interestDefault = i;
+				o.interest.value = i;
 				o.calc();
 			});
 

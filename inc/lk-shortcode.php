@@ -320,7 +320,7 @@ final class LK_shortcode {
 	 * wp enqueueing css style in header
 	 */
 	private function add_css() {
-        wp_enqueue_style('em-calculator-style', LANEKALKULATOR_PLUGIN_URL.'assets/css/pub/em-calculator.css', array(), '1.0.0');
+        wp_enqueue_style('em-calculator-style', LANEKALKULATOR_PLUGIN_URL.'assets/css/pub/em-calculator.css', array(), '1.0.1');
         // wp_enqueue_style('em-calculator-mobile', LANEKALKULATOR_PLUGIN_URL.'assets/css/pub/em-calculator-mobile.css', array(), '1.0.0', '(max-width: 800px)');
 	}
 
